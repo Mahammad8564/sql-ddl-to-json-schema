@@ -61,7 +61,7 @@ Delivers an array of Mongoose Schema documents (one for each parsed table):
 ]
 ```
 
-And an array of tables in a JSON Schema format:
+Also an array of tables in a JSON Schema format:
 
 ```json
 [
