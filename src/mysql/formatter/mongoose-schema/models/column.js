@@ -72,7 +72,7 @@ class Column {
     this.index = undefined;
     this.unique = undefined;
     this.primary = undefined;
-    
+
     /**
      * Column comment.
      * @type {string}
@@ -114,7 +114,7 @@ class Column {
     if (utils.isDefined(this.required)) { json.required = this.required; }
     if (utils.isDefined(this.reference)) { json.reference = this.reference; }
     if (utils.isDefined(this.autoincrement)) { json.autoincrement = this.autoincrement; }
-   
+
     return json;
   }
 }
