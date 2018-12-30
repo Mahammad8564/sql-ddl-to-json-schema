@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-mongoose-schema",
-  "version": "1.0.1",
+  "version": "3.0.1",
   "description": "Parse and convert SQL DDL statements to a Mongoose Schema.",
   "main": "index.js",
   "author": "Mahammad Chharchhodawala <mahammadkc@gmail.com> (https://github.com/Mahammad8564)",
