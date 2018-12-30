@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-mongoose-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse and convert SQL DDL statements to a Mongoose Schema.",
   "main": "index.js",
   "author": "Mahammad Chharchhodawala <mahammadkc@gmail.com> (https://github.com/Mahammad8564)",
@@ -17,7 +17,7 @@
     "nyc": "node_modules/nyc/bin/nyc.js",
     "coverage": "yarn run nyc ava test/**/*.spec.js",
     "test": "ava --color test/**/*.spec.js",
-    "lint": "eslint src tasks test lib",
+    "lint": "eslint src tasks test lib --fix",
     "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
     "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
     "build": "yarn run build:mysql",
