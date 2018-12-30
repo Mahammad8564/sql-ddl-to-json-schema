@@ -262,7 +262,7 @@ const jsonSchemaDocuments = parser.feed(sql)
  * Or to explore the compact JSON format...
  */
 const compactJsonTablesArray = parser.feed(sql)
-  .toCompactJson(parsedJsonFormat);
+  .toCompactJson(parser.results);
 
 ```
 
