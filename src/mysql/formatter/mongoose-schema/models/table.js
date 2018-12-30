@@ -55,6 +55,22 @@ class Table {
         });
     }
 
+    if (utils.isDefined(json.uniqueKeys)) {
+      /**
+       * Set property in column(s) that is/are unique key(s).
+       */
+      json.uniqueKeys
+        .forEach(uniqueKey => {
+          uniqueKey.columns
+            .map(c => c.column)
+            .map(name => table.columns.find(c => c.name === name))
+            .filter(column => !!column)
+            .forEach(column => {
+              column.unique = true;
+            });
+        });
+    }
+
     if (utils.isDefined(json.indexes)) {
       /**
        * Set property in column(s) that is/are index(es).

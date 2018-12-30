@@ -1,11 +1,11 @@
-# SQL DDL to JSON Schema converter
+# SQL DDL to Mongoose Schema converter
 
 [![Build Status](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema.svg?branch=master)](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema)
 [![npm](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)
 [![node](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)
 [![license](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)
 
-Transforms SQL DDL statements into JSON format (JSON Schema and a compact format).
+Transforms SQL DDL statements into Mongoose format (also JSON Schema and a compact format).
 
 ```sql
 CREATE TABLE users (
@@ -20,7 +20,48 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 ```
 
-Delivers an array of JSON Schema documents (one for each parsed table):
+Delivers an array of Mongoose Schema documents (one for each parsed table):
+
+```javascript
+[
+  {
+    "title": "users",
+    "description": "All system users",
+    "columns": {
+      "id": {
+        "type": Number,
+        "min": -1.5474250491067253e+26,
+        "max": 1.5474250491067253e+26,
+        "unique": true,
+        "primary": true,
+        "required": true,
+        "autoincrement": true
+      },
+      "nickname": {
+        "type": String,
+        "maxlength": 255,
+        "unique": true,
+        "required": false
+      },
+      "deleted_at": {
+        "type": String,
+        "required": true
+      },
+      "created_at": {
+        "type": String,
+        "default": "CURRENT_TIMESTAMP",
+        "required": false
+      },
+      "updated_at": {
+        "type": String,
+        "required": true
+      }
+    }
+  }
+]
+```
+
+And an array of tables in a JSON Schema format:
 
 ```json
 [
@@ -163,15 +204,15 @@ And an array of tables in a compact JSON format:
 ]
 ```
 
-*Currently only DDL statements of mySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+*Currently only DDL statements of mySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/Mahammad8564/sql-ddl-to-mongoose-schema/blob/master/ROADMAP.md)
 
 ## Usage
 
-```yarn add sql-ddl-to-json-schema```
+```yarn add sql-ddl-to-mongoose-schema```
 
 ```js
 
-const Parser = require('sql-ddl-to-json-schema');
+const Parser = require('sql-ddl-to-mongoose-schema');
 const parser = new Parser('mysql');
 
 const sql = `
@@ -186,6 +227,21 @@ CREATE TABLE users (
 
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `;
+
+/**
+ * Output each table to a Mongoose Schema file in a given directory...
+ */
+parser.feed(sql)
+  .toMongooseSchemaFiles(__dirname)
+  .then((outputFilePaths) => {
+    // ...
+  });
+
+/**
+ * Or get the Mongoose Schema if you need to modify it...
+ */
+const jsonSchemaDocuments = parser.feed(sql)
+  .toMongooseSchemaArray();
 
 /**
  * Output each table to a JSON Schema file in a given directory...
@@ -260,7 +316,7 @@ const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, options, jsonSchemaD
 
 **No SQL server, client or DBMS is required.**
 
-To see which DDL statements / SQL dialects are supported, [check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md).
+To see which DDL statements / SQL dialects are supported, [check out the roadmap](https://github.com/Mahammad8564/sql-ddl-to-mongoose-schema/blob/master/ROADMAP.md).
 
 This project is a grammar and stream-friendly SQL parser based on [nearley](https://nearley.js.org).
 
@@ -295,6 +351,7 @@ Folder structure:
 |     |- formatter/       Formats the parsed JSON (output of parser) to other format.
 |        |- compact/      Formatter for a compact JSON format.
 |        |- json-schema/   Formatter for a JSON Schema format.
+|        |- mongoose-schema/   Formatter for a Mongoose Schema format.
 |     |- parser/
 |        |- dictionary/   JS files with array of keywords used in lexer.ne.
 |        |- rules/        Nearley files with grammar rules.

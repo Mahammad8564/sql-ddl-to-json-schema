@@ -1,11 +1,11 @@
 {
-  "name": "sql-ddl-to-json-schema",
-  "version": "2.2.0",
-  "description": "Parse and convert SQL DDL statements to a JSON Schema.",
+  "name": "sql-ddl-to-mongoose-schema",
+  "version": "1.0.0",
+  "description": "Parse and convert SQL DDL statements to a Mongoose Schema.",
   "main": "index.js",
-  "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
+  "author": "Mahammad Chharchhodawala <mahammadkc@gmail.com> (https://github.com/Mahammad8564)",
   "maintainers": [
-    "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
+    "Mahammad Chharchhodawala <mahammadkc@gmail.com> (https://github.com/Mahammad8564)"
   ],
   "scripts": {
     "standard-version": "node_modules/.bin/standard-version",
@@ -28,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/duartealexf/sql-ddl-to-json-schema"
+    "url": "https://github.com/Mahammad8564/sql-ddl-to-mongoose-schema"
   },
-  "homepage": "https://github.com/duartealexf/sql-ddl-to-json-schema",
+  "homepage": "https://github.com/Mahammad8564/sql-ddl-to-mongoose-schema",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"
+    "url": "https://github.com/Mahammad8564/sql-ddl-to-mongoose-schema/issues"
   },
   "dependencies": {
     "moo": "^0.4.3",
